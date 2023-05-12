@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: html_head" />
+<body>
+
+	<div th:replace="fragments/fragments :: html_menu" />
+
+	<div class="container" style="margin-top: 8%">
+		<!-- Page Heading -->
+		<h1 class="h3 mb-2 text-gray-800"><span th:text="${lista}"></span></h1>
+		<!-- DataTale -->
+		<div class="card shadow mb-4">
+			<div class="card-header py-5">
+				
+				<div class="text-right" >
+
+					<a href="/usuario/novo" class="btn btn-primary btn-icon-split">
+						<span class="text">Cadastar</span>
+					</a>
+
+				</div>
+				
+
+			</div>
+
+			<div class="card-body">
+				<div class="table-responsive">
+				
+				
+				
+				<table class="table table-bordered" id="dataTable" width="100%"
+						cellspacing="0">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Email</th>
+								<th>Nome</th>
+								<th>Senha</th>
+								<th>Foto</th>
+								<th>EDITAR</th>
+								<th>DELETAR</th>
+
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>Id</th>
+								<th>Email</th>
+								<th>Nome</th>
+								<th>Senha</th>
+								<th>Foto</th>
+								<th>EDITAR</th>
+								<th>DELETAR</th>
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr th:each= "u : ${usuarios}">
+								<td> [[${u.id}]] </td>
+								<td> [[${u.email}]] </td>
+								<td> [[${u.nome}]] </td>
+								<td> [[${u.senha}]] </td>
+								<td>
+									<div class="row" th:each= "fotos : ${u.getFotos}">
+										<img class="img-thumbnail img-fluid" 
+										     style="width:200px; height:200px;"      
+											th:src="${fotos.getFotosImagePath}"/>
+									
+									</div>									
+								</td>
+								<td>EDITAR</td>
+								<td>DELETAR</td>
+							</tr>
+					
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div th:replace="fragments/fragments :: html_footer" />
+</body>
+</html>
